@@ -4,7 +4,7 @@ kind: pod
 metadata:
   name:
   labels: nginx
-    purpose: demo
+  purpose: demo
 spec:
   Containers:
   - name: nginx
