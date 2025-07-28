@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pod-configmap
+  labels:
+    purpose: demonstrate-envars
+data:
+  course: "devops with aws"
+  trainer: "surya"
+  duration: "120hrs"
