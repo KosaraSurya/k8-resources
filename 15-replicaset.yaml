@@ -15,7 +15,7 @@ spec:
       purpose: rs-demo
       project: roboshop
       app: nginx
-      environment: de
+      environment: dev
 
   # This is pod definition
   template:
