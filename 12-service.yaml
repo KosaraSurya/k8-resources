@@ -6,7 +6,6 @@ metadata:
     purpose: service-demo
 spec:
   selector:
-  # these should be match with pod labels
     purpose: service-demo
     project: roboshop
     environment: dev
@@ -14,14 +13,12 @@ spec:
     - protocol: TCP
       port: 80 # service port
       targetPort: 80 # container port
-
-#------------------
-
+---
 apiVersion: v1
 kind: Pod
 metadata:
   name: nginx
-  labels: 
+  labels:
     purpose: service-demo
     project: roboshop
     environment: dev
@@ -29,4 +26,3 @@ spec:
   containers:
   - name: nginx
     image: nginx
-
