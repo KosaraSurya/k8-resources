@@ -21,10 +21,10 @@ spec:
   template:
     metadata:
       labels:
-      purpose: rs-demo
-      project: roboshop
-      app: nginx
-      environment: dev
+        purpose: rs-demo
+        project: roboshop
+        app: nginx
+        environment: dev
     spec:
       containers:
       - name: nginx
