@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx #useer defined
+  labels:
+    purpose: service-demo #user defined
+spec:
+  selector:
+  # these should be match with pod labels
+    purpose: service-demo
+    project: roboshop
+    environment: dev
+  ports:
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 #container port for nginx
+
+#------------------
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels: 
+    purpose: service-demo
+    project: roboshop
+    environment: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+
