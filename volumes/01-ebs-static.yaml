@@ -1,0 +1,68 @@
+#PV
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: ebs-static-pv
+spec:
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+  csi:
+    driver: ebs.csi.aws.com
+    fsType: ext4
+    volumeHandle: vol-09d56645553773368
+---
+#PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ebs-static-claim
+spec:
+  storageClassName: "" # Empty string must be explicitly set otherwise default StorageClass will be set
+  volumeName: ebs-static-pv
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 15Gi
+---
+# POD
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    purpose: ebs-static-demo
+    project: roboshop
+    environment: dev
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts: # docker run -v host-path:container-path
+    - name: persistent-storage
+      mountPath: /data
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: ebs-static-claim
+
+---
+#service
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-np
+  labels:
+    purpose: service-lb-demo
+spec:
+  type: LoadBalancer
+  selector:
+    purpose: ebs-static-demo
+    project: roboshop
+    environment: dev
+  ports:
+    - protocol: TCP
+      port: 80 # service port
+      targetPort: 80 # container port
