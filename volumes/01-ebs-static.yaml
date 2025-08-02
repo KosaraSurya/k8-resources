@@ -44,7 +44,7 @@ spec:
     image: nginx
     volumeMounts: # docker run -v host-path:container-path
     - name: persistent-storage
-      mountPath: /data
+      mountPath: /usr/share/nginx/html
   volumes:
   - name: persistent-storage
     persistentVolumeClaim:
@@ -55,7 +55,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-np
+  name: ebs-static
   labels:
     purpose: service-lb-demo
 spec:
