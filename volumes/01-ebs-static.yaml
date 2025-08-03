@@ -1,3 +1,4 @@
+# First crate volume manually in AWS console then crate PV
 #PV
 apiVersion: v1
 kind: PersistentVolume
@@ -12,6 +13,7 @@ spec:
     driver: ebs.csi.aws.com
     fsType: ext4
     volumeHandle: vol-09d56645553773368
+  persistentVolumeReclaimPolicy: Retain
 ---
 #PVC
 apiVersion: v1
