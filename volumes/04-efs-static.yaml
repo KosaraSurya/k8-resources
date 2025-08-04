@@ -28,25 +28,25 @@ spec:
     requests:
       storage: 5Gi
 
-# # pod creation
-# apiVersion: v1
-# kind: Pod
-# metadata:
-#   name: nginx
-#   labels:
-#     purpose: efs-static-demo
-#     project: roboshop
-# spec:
-#   containers:
-#   - name: nginx
-#     image: nginx
-#     volumeMounts: # docker run -v host-path:container-path
-#     - name: persistent-storage
-#       mountPath: /usr/share/nginx/html
-#   volumes:
-#   - name: persistent-storage
-#     persistentVolumeClaim:
-#       claimName: efs-static 
+# pod creation
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    purpose: efs-static-demo
+    project: roboshop
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts: # docker run -v host-path:container-path
+    - name: persistent-storage
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: persistent-storage
+    persistentVolumeClaim:
+      claimName: efs-static 
     
 # # Service
 # apiVersion: v1
