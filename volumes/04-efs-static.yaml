@@ -15,18 +15,18 @@ spec:
     driver: efs.csi.aws.com
     volumeHandle: fs-008a508750cc679a4
 
-# # PVC Creation
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: efs-static
-# spec:
-#   accessModes:
-#     - ReadWriteOnce
-#   storageClassName: ""
-#   resources:
-#     requests:
-#       storage: 5Gi
+# PVC Creation
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-static
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 5Gi
 
 # # pod creation
 # apiVersion: v1
